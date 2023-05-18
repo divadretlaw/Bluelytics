@@ -34,7 +34,7 @@ extension Bluelytics {
     }
     
     /// Entry data from the API
-    public struct Entry: Codable, Equatable, Hashable, Sendable {
+    public struct Entry: Codable, Equatable, Hashable, Identifiable, Sendable {
         /// Date for this exchange rate
         public let date: Date
         /// Type of exchange rate (Oficial is the government rate, Blue is the free market)
@@ -47,6 +47,10 @@ extension Bluelytics {
         /// Average rate overall
         public var valueAvg: Double {
             (valueSell + valueBuy) / 2
+        }
+        
+        public var id: String {
+            "\(source.rawValue)-\(Int(date.timeIntervalSince1970))"
         }
     }
     
