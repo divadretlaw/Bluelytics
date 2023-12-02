@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Bluelytics API
 public struct Bluelytics {
     private let session: URLSession
     private let host: URLComponents
@@ -50,7 +51,7 @@ public struct Bluelytics {
         return jsonDecoder
     }()
     
-    /// This endpoint returns the latest rates.
+    /// This endpoint returns the latest rates
     ///
     /// - Returns: The current currency exchange rates
     public func latest() async throws -> Data {
@@ -67,7 +68,7 @@ public struct Bluelytics {
     /// This endpoint returns a evolution series.
     ///
     /// - Parameters:
-    ///     - days: Number of days to fetch. `nil` will fetch all available data
+    ///     - days: Number of days to fetch. `nil` will fetch all available data.
     ///
     /// - Returns: The evolution of the exchange rates
     public func evolution(days: Int? = nil) async throws -> [Entry] {

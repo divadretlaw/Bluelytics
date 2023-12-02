@@ -37,7 +37,7 @@ extension Bluelytics {
     public struct Entry: Codable, Equatable, Hashable, Identifiable, Sendable {
         /// Date for this exchange rate
         public let date: Date
-        /// Type of exchange rate (Oficial is the government rate, Blue is the free market)
+        /// Type of exchange rate (``Bluelytics/Source/official`` is the government rate, ``Bluelytics/Source/blue`` is the free market)
         public let source: Source
         /// Sell (ask) value, average rate asked for by sellers
         public let valueSell: Double
@@ -55,7 +55,7 @@ extension Bluelytics {
     }
     
     /// Source of the entry
-    public enum Source: String, Codable, Equatable, Hashable, Sendable, CustomStringConvertible {
+    public enum Source: String, Codable, Equatable, Hashable, CustomStringConvertible, Sendable {
         /// Official government rate
         case official = "Oficial"
         /// Free market rate
