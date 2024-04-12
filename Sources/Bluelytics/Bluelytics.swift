@@ -26,7 +26,7 @@ public struct Bluelytics {
         }
     }
     
-    static var jsonDecoder: JSONDecoder = {
+    static let jsonDecoder: JSONDecoder = {
         let dateFormatter = DateFormatter()
         
         let jsonDecoder = JSONDecoder()
