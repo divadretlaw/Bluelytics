@@ -8,7 +8,7 @@
 import Foundation
 
 /// Bluelytics API
-public struct Bluelytics {
+public struct Bluelytics: Sendable {
     private let session: URLSession
     private let host: URLComponents
     
