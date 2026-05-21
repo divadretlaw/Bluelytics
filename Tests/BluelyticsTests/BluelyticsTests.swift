@@ -1,29 +1,27 @@
-import XCTest
+import Foundation
+import Testing
 @testable import Bluelytics
 
-final class BluelyticsTests: XCTestCase {
-    var bluelytics: Bluelytics!
+struct BluelyticsTests {
+    let bluelytics = Bluelytics()
 
-    override func setUp() async throws {
-        try await super.setUp()
-
-        self.bluelytics = Bluelytics()
-    }
-
-    func testLatest() async throws {
+    @Test func latest() async throws {
         let data = try await bluelytics.latest()
 
         let calculatedOfficialAverage = (data.oficial.valueBuy + data.oficial.valueSell) / 2
         let differenceOfficial = abs(data.oficial.valueAvg - calculatedOfficialAverage)
-        XCTAssertTrue(differenceOfficial < 10)
+        // If the difference between received and calculated average is less than 10, we assume we got proper data
+        #expect(differenceOfficial < 10)
 
         let calculatedBlueAverage = (data.blue.valueBuy + data.blue.valueSell) / 2
         let differenceBlue = abs(data.blue.valueAvg - calculatedBlueAverage)
-        XCTAssertTrue(differenceBlue < 10)
+        // If the difference between received and calculated average is less than 10, we assume we got proper data
+        #expect(differenceBlue < 10)
     }
 
-    func testEvolution() async throws {
+    @Test func evolution() async throws {
         let data = try await bluelytics.evolution(days: 7)
-        XCTAssertEqual(data.count, 7)
+        // If the we get the same amount of data we requested, we assume we got proper data
+        #expect(data.count == 7)
     }
 }
