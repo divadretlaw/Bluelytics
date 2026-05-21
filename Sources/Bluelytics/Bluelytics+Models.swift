@@ -18,11 +18,11 @@ extension Bluelytics {
         public let oficialEuro: Value
         /// Free market rate in US Euro
         public let blueEuro: Value
-        
+
         /// Date when the data was last updated
         public let lastUpdate: Date
     }
-    
+
     /// Response data from the API
     public struct Value: Codable, Equatable, Hashable, Sendable {
         /// Average rate overall
@@ -32,7 +32,7 @@ extension Bluelytics {
         /// Buy (bid) value, average rate bidded for by buyers
         public let valueBuy: Double
     }
-    
+
     /// Entry data from the API
     public struct Entry: Codable, Equatable, Hashable, Identifiable, Sendable {
         /// Date for this exchange rate
@@ -43,24 +43,24 @@ extension Bluelytics {
         public let valueSell: Double
         /// Buy (bid) value, average rate bidded for by buyers
         public let valueBuy: Double
-        
+
         /// Average rate overall
         public var valueAvg: Double {
             (valueSell + valueBuy) / 2
         }
-        
+
         public var id: String {
             "\(source.rawValue)-\(Int(date.timeIntervalSince1970))"
         }
     }
-    
+
     /// Source of the entry
     public enum Source: String, Codable, Equatable, Hashable, CustomStringConvertible, Sendable {
         /// Official government rate
         case official = "Oficial"
         /// Free market rate
         case blue = "Blue"
-        
+
         public var description: String {
             rawValue
         }

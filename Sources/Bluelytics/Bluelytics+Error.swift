@@ -26,7 +26,7 @@ extension Bluelytics {
         ///     - code: The HTTP status code.
         case serverError(_ code: Int)
     }
-    
+
     struct ErrorResponse: Decodable {
         let message: String
     }
